@@ -12,11 +12,10 @@ import java.util.Date;
 @Data
 public class ReviewDto {
     private String title;
-    @ManyToOne
-    private User user;
 
-    @ManyToOne
-    private Company company;
+    private long userId;
+
+    private long companyId;
 
     private Long rating; // req
 
@@ -27,10 +26,10 @@ public class ReviewDto {
     public ReviewDto() {
     }
 
-    public ReviewDto(String title, User user, Company company, Long rating, String comment, Date postDate) {
+    public ReviewDto(String title, long userId, long companyId, Long rating, String comment, Date postDate) {
         this.title = title;
-        this.user = user;
-        this.company = company;
+        this.userId = userId;
+        this.companyId = companyId;
         this.rating = rating;
         this.comment = comment;
         this.postDate = postDate;

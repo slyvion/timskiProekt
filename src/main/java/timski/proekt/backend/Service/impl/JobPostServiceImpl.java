@@ -2,12 +2,14 @@ package timski.proekt.backend.Service.impl;
 
 import org.springframework.stereotype.Service;
 import timski.proekt.backend.Model.Company;
-import timski.proekt.backend.Model.EmploymentType;
+import timski.proekt.backend.Model.Constants.EmploymentType;
+import timski.proekt.backend.Model.Dto.JobPostDto;
 import timski.proekt.backend.Model.JobPost;
-import timski.proekt.backend.Model.JobType;
+import timski.proekt.backend.Model.Constants.JobType;
 import timski.proekt.backend.Repository.CompanyRepository;
 import timski.proekt.backend.Repository.JobPostRepository;
 import timski.proekt.backend.Service.JobPostService;
+import timski.proekt.backend.exceptions.InvalidCompanyIdException;
 import timski.proekt.backend.exceptions.InvalidJobPostIdException;
 
 import java.util.List;
@@ -35,21 +37,29 @@ public class JobPostServiceImpl implements JobPostService {
     }
 
     @Override
-    public JobPost create(String title, String description, Company company, JobType jobType, EmploymentType employmentType, String location) {
+    public JobPost create(JobPostDto jobPostDto) {
 
-        JobPost jobPost = new JobPost(title, description, company, jobType, employmentType, location);
-        return jobPostRepository.save(jobPost);
+        Company company = companyRepository.findById(jobPostDto.getCompanyId()).orElseThrow(InvalidCompanyIdException::new);
+        JobPost jobPost = new JobPost(
+                jobPostDto.getTitle(),
+                jobPostDto.getDescription(),
+                company,
+                jobPostDto.getJobType(),
+                jobPostDto.getEmploymentType(),
+                jobPostDto.getLocation()
+        );
+    return null;
     }
 
     @Override
-    public JobPost update(Long id, String title, String description, JobType jobType, EmploymentType employmentType, String location) {
+    public JobPost update(Long id, JobPostDto jobPostDto) {
         JobPost jobPost = this.findById(id);
+            jobPost.setTitle(jobPost.getTitle());
+            jobPost.setJobType(jobPostDto.getJobType());
+            jobPost.setDescription(jobPostDto.getDescription());
+            jobPost.setEmploymentType(jobPostDto.getEmploymentType());
+            jobPost.setLocation(jobPostDto.getLocation());
 
-        jobPost.setTitle(title);
-        jobPost.setDescription(description);
-        jobPost.setJobType(jobType);
-        jobPost.setEmploymentType(employmentType);
-        jobPost.setLocation(location);
         return jobPostRepository.save(jobPost);
     }
 

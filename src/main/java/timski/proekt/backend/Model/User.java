@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import lombok.NoArgsConstructor;
+import timski.proekt.backend.Model.Constants.UserRole;
 
 
 @Entity
@@ -29,6 +30,6 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = UserRole.User; // Default role set here
+        this.role = UserRole.USER; // Default role set here
     }
 }

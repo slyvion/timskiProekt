@@ -14,4 +14,5 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     List<Company> findCompaniesByCompanyName(String name);
 
 
+
 }

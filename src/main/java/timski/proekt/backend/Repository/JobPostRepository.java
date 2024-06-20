@@ -3,9 +3,9 @@ package timski.proekt.backend.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import timski.proekt.backend.Model.Company;
-import timski.proekt.backend.Model.EmploymentType;
+import timski.proekt.backend.Model.Constants.EmploymentType;
 import timski.proekt.backend.Model.JobPost;
-import timski.proekt.backend.Model.JobType;
+import timski.proekt.backend.Model.Constants.JobType;
 
 import java.util.List;
 

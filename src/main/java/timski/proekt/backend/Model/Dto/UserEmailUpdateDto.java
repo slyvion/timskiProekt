@@ -2,18 +2,16 @@ package timski.proekt.backend.Model.Dto;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
-public class UserDto {
+@NoArgsConstructor
+public class UserEmailUpdateDto {
     private String email;
-    private String password;
 
-    public UserDto() {
-    }
-    public UserDto(String email, String password) {
+    public UserEmailUpdateDto(String email) {
 
         this.email = email;
-        this.password = password;
     }
 }

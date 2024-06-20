@@ -2,6 +2,7 @@ package timski.proekt.backend.Service.impl;
 
 import org.springframework.stereotype.Service;
 import timski.proekt.backend.Model.Company;
+import timski.proekt.backend.Model.Dto.CompanyDto;
 import timski.proekt.backend.Repository.CompanyRepository;
 import timski.proekt.backend.Service.CompanyService;
 import timski.proekt.backend.exceptions.InvalidCompanyIdException;
@@ -38,22 +39,31 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company create(String companyName, String email, String password, String website, String description, String location) {
-        Company company = new Company(companyName, email, password, website ,description, location);
+    public Company create(CompanyDto companyDto) {
+        Company company = new Company(
+                companyDto.getCompanyName(),
+                companyDto.getEmail(),
+                companyDto.getPassword(),
+                companyDto.getWebsite(),
+                companyDto.getDescription(),
+                companyDto.getLocation()
+        );
         return companyRepository.save(company);
     }
 
     @Override
-    public Company update(Long id, String Name, String email, String Password, String website, String Description, String Location) {
+    public Company update(Long id, CompanyDto companyDto) {
         Company company = this.findById(id);
-        company.setCompanyName(Name);
-        company.setEmail(email);
-        company.setWebsite(website);
-        company.setPassword(Password);
-        company.setDescription(Description);
-        company.setLocation(Location);
+        company.setCompanyName(company.getCompanyName());
+        company.setEmail(companyDto.getEmail());
+        company.setWebsite(companyDto.getWebsite());
+        company.setPassword(companyDto.getPassword());
+        company.setDescription(companyDto.getDescription());
+        company.setLocation(companyDto.getLocation());
+
         return companyRepository.save(company);
     }
+
 
 
     @Override

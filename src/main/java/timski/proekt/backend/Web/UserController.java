@@ -3,7 +3,8 @@ package timski.proekt.backend.Web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import timski.proekt.backend.Model.Dto.UserDto;
+import timski.proekt.backend.Model.Dto.UserEmailUpdateDto;
+import timski.proekt.backend.Model.Dto.UserPasswordUpdateDto;
 import timski.proekt.backend.Model.User;
 import timski.proekt.backend.Service.UserService;
 
@@ -28,13 +29,20 @@ public class UserController {
         return "";
     }
 
-    @PostMapping("/{id}/edit")
-    public User update(@PathVariable Long id,
-                       @RequestParam UserDto userDto) {
-        return userService.update(
+    @PostMapping("/{id}/passwordUpdate")
+    public User updatePassword(@PathVariable Long id,
+                                 @RequestBody UserPasswordUpdateDto userDto) {
+        return userService.PasswordUpdate(
                 id,
-                userDto.getEmail(),
-                userDto.getPassword()
+                userDto
+        );
+    }
+    @PostMapping("/{id}/emailUpdate")
+    public User updateEmail(@PathVariable long id,
+                              @RequestBody UserEmailUpdateDto userDto){
+        return userService.EmailUpdate(
+          id,
+          userDto
         );
     }
 }

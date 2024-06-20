@@ -1,7 +1,7 @@
-package timski.proekt.backend.Model;
+package timski.proekt.backend.Model.Constants;
 
 public enum JobType {
-    On_Site,
-    Hybrid,
-    Remote
+    ON_SITE,
+    HYBRID,
+    REMOTE
 }

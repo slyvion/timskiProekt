@@ -10,25 +10,12 @@ import timski.proekt.backend.Service.CompanyService;
 import java.util.List;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/company")
 public class CompanyController { //todo: dodadi reviews??
 
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping("/companies")
-    public String showList(Model model) {
-        List<Company> companies = companyService.listAll();
-        model.addAttribute("companies", companies);
-        return "";
-    }
-
-
-    @GetMapping("/companies/add") // has role admin?
-    public String showAdd(Model model) {
-        model.addAttribute("company", new Company());
-        return "";
-    }
 
     @GetMapping("/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model) {
@@ -40,12 +27,7 @@ public class CompanyController { //todo: dodadi reviews??
     @PostMapping // premesti u logincontroller
     public Company create(@RequestBody CompanyDto companyDto) {
         return companyService.create(
-                companyDto.getCompanyName(),
-                companyDto.getEmail(),
-                companyDto.getPassword(),
-                companyDto.getWebsite(),
-                companyDto.getDescription(),
-                companyDto.getLocation()
+                companyDto
         );
     }
 
@@ -55,12 +37,7 @@ public class CompanyController { //todo: dodadi reviews??
                           @RequestBody CompanyDto companyDto) {
         return companyService.update(
                 id,
-                companyDto.getCompanyName(),
-                companyDto.getEmail(),
-                companyDto.getPassword(),
-                companyDto.getWebsite(),
-                companyDto.getDescription(),
-                companyDto.getLocation()
+                companyDto
         );
     }
 
@@ -75,5 +52,5 @@ public class CompanyController { //todo: dodadi reviews??
 
     //@Postmapping(/{id}/delete-review
 
-    //@Postmapping({id}/show
+    //@Postmapping({id}/showReviews
 }

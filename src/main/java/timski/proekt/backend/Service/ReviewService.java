@@ -1,6 +1,7 @@
 package timski.proekt.backend.Service;
 
 import timski.proekt.backend.Model.Company;
+import timski.proekt.backend.Model.Dto.ReviewDto;
 import timski.proekt.backend.Model.Review;
 import timski.proekt.backend.Model.User;
 
@@ -10,9 +11,9 @@ import java.util.List;
 public interface ReviewService {
 
 
-    Review create(String title, Long userId, Long companyId, Long rating, String comment, Date postDate);
+    Review create(ReviewDto reviewDto);
 
-    Review update(Long id, String title, Long rating, String comment, Date postDate);
+    Review update(Long id, ReviewDto reviewDto);
 
     Review findById(Long id);
     List<Review> findByDate(Date postDate);

@@ -1,6 +1,6 @@
-package timski.proekt.backend.Model;
+package timski.proekt.backend.Model.Constants;
 
 public enum UserRole {
-    User,
-    Admin
+    USER,
+    ADMIN
 }

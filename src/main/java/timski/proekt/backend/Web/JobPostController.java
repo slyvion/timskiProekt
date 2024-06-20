@@ -41,24 +41,17 @@ public class JobPostController {
     @PostMapping
     public JobPost create(@RequestBody JobPostDto jobPostDto) {
         return jobPostService.create(
-                jobPostDto.getTitle(),
-                jobPostDto.getDescription(),
-                jobPostDto.getCompany(),
-                jobPostDto.getJobType(),
-                jobPostDto.getEmploymentType(),
-                jobPostDto.getLocation()
+                jobPostDto
         );
     }
 
     @PutMapping("/{id}")
     public JobPost update(@PathVariable Long id, @RequestBody JobPostDto jobPostDto) {
+
+
         return jobPostService.update(
                 id,
-                jobPostDto.getTitle(),
-                jobPostDto.getDescription(),
-                jobPostDto.getJobType(),
-                jobPostDto.getEmploymentType(),
-                jobPostDto.getLocation()
+                jobPostDto
         );
     }
 

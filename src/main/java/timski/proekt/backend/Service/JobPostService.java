@@ -1,9 +1,10 @@
 package timski.proekt.backend.Service;
 
 import timski.proekt.backend.Model.Company;
-import timski.proekt.backend.Model.EmploymentType;
+import timski.proekt.backend.Model.Constants.EmploymentType;
+import timski.proekt.backend.Model.Dto.JobPostDto;
 import timski.proekt.backend.Model.JobPost;
-import timski.proekt.backend.Model.JobType;
+import timski.proekt.backend.Model.Constants.JobType;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ public interface JobPostService {
 
     JobPost findById(Long id);
 
-    JobPost create(String title, String description, Company company, JobType jobType, EmploymentType employmentType, String location);
+    JobPost create(JobPostDto jobPostDto);
 
-    JobPost update(Long id, String title, String description, JobType jobType, EmploymentType employmentType, String location);
+    JobPost update(Long id, JobPostDto jobPostDto);
 
     JobPost delete(Long id);
 

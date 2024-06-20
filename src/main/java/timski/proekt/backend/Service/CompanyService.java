@@ -1,6 +1,7 @@
 package timski.proekt.backend.Service;
 
 import timski.proekt.backend.Model.Company;
+import timski.proekt.backend.Model.Dto.CompanyDto;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ public interface CompanyService {
 
     List<Company> findByName(String name);
 
-    Company create(String name, String email, String password, String website, String description, String location);
+    Company create(CompanyDto companyDto);
 
-    Company update(Long id, String Name, String email,String Password, String website,String Description, String Location);
+    Company update(Long id, CompanyDto companyDto);
 
     Company delete(Long id);
 

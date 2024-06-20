@@ -1,7 +1,7 @@
-package timski.proekt.backend.Model;
+package timski.proekt.backend.Model.Constants;
 
 public enum EmploymentType {
-    Full_Time,
-    Part_time,
-    Intern
+    FULL_TIME,
+    PART_TIME,
+    INTERN
 }

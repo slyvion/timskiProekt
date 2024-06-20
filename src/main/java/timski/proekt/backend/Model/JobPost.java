@@ -2,10 +2,10 @@ package timski.proekt.backend.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import jakarta.persistence.Id;
+import timski.proekt.backend.Model.Constants.EmploymentType;
+import timski.proekt.backend.Model.Constants.JobType;
 
 @Entity
 @Data
@@ -14,7 +14,7 @@ public class JobPost {
 
     @Id
     @GeneratedValue
-    private Long Id;
+    private Long id;
 
     private String title;
 

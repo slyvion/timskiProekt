@@ -2,6 +2,7 @@ package timski.proekt.backend.Service.impl;
 
 import org.springframework.stereotype.Service;
 import timski.proekt.backend.Model.Company;
+import timski.proekt.backend.Model.Dto.ReviewDto;
 import timski.proekt.backend.Model.Review;
 import timski.proekt.backend.Model.User;
 import timski.proekt.backend.Repository.CompanyRepository;
@@ -29,25 +30,32 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review create(String title, Long userId, Long companyId, Long rating, String comment, Date postDate) {
-        User user = userRepository.findById(userId).orElseThrow(InvalidUserIdException::new);
-        Company company = companyRepository.findById(companyId).orElseThrow(InvalidCompanyIdException::new);
-        Review review = new Review(title, user, company, rating, comment, postDate);
+    public Review create(ReviewDto reviewDto) {
+        User user = userRepository.findById(reviewDto.getUserId()).orElseThrow(InvalidUserIdException::new);
+        Company company = companyRepository.findById(reviewDto.getCompanyId()).orElseThrow(InvalidCompanyIdException::new);
+        Review review = new Review(
+                reviewDto.getTitle(),
+                user,
+                company,
+                reviewDto.getRating(),
+                reviewDto.getComment(),
+                reviewDto.getPostDate()
+        );
 
         return reviewRepository.save(review);
     }
 
     @Override
-    public Review update(Long id, String title, Long rating, String comment, Date postDate) {
-
+    public Review update(Long id, ReviewDto reviewDto) {
         Review review = this.findById(id);
-        review.setTitle(title);
-        review.setComment(comment);
-        review.setRating(rating);
-        review.setPostDate(postDate);
+        review.setTitle(reviewDto.getTitle());
+        review.setRating(reviewDto.getRating());
+        review.setComment(reviewDto.getComment());
 
         return reviewRepository.save(review);
     }
+
+
 
     @Override
     public Review findById(Long id) {

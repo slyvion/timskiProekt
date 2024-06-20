@@ -1,42 +1,34 @@
 package timski.proekt.backend.Model.Dto;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import timski.proekt.backend.Model.Company;
-import timski.proekt.backend.Model.EmploymentType;
-import timski.proekt.backend.Model.JobType;
+import timski.proekt.backend.Model.Constants.EmploymentType;
+import timski.proekt.backend.Model.Constants.JobType;
 
 @Data
 public class JobPostDto {
-    private String Title;
 
-    private String Description;
+    private String title;
 
-    @ManyToOne
-    private Company company;
+    private String description;
 
-    @Enumerated(EnumType.STRING)
+    private long companyId;
+
     private JobType jobType;
 
-    @Enumerated(EnumType.STRING)
     private EmploymentType employmentType;
 
-    private String Location;
+    private String location;
 
 
     public JobPostDto() {
     }
 
-    public JobPostDto(String title, String description, Company company, JobType jobType, EmploymentType employmentType, String location) {
-        this.Title = title;
-        Description = description;
-        this.company = company;
+    public JobPostDto(String title, String description, long companyId, JobType jobType, EmploymentType employmentType, String location) {
+        this.title = title;
+        this.description = description;
+        this.companyId = companyId;
         this.jobType = jobType;
         this.employmentType = employmentType;
-        Location = location;
+        this.location = location;
     }
 }
