@@ -7,17 +7,21 @@ import lombok.Setter;
 import timski.proekt.backend.Model.Company;
 import timski.proekt.backend.Model.User;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Data
 public class ReviewDto {
+
     private String title;
 
     private long userId;
 
     private long companyId;
 
+    @NotBlank
     private Long rating; // req
+
 
     private String comment; // non-required
 

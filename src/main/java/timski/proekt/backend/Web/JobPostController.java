@@ -8,6 +8,7 @@ import timski.proekt.backend.Model.JobPost;
 import timski.proekt.backend.Service.CompanyService;
 import timski.proekt.backend.Service.JobPostService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,21 +33,23 @@ public class JobPostController {
     }
 
     @GetMapping("/{id}/edit")
-    public String showEdit(@PathVariable Long id, Model model) {
+    public String showEdit(@PathVariable Long id,
+                           Model model) {
         JobPost jobPost = jobPostService.findById(id);
         model.addAttribute("jobPost", jobPost);
         return "";
     }
 
     @PostMapping
-    public JobPost create(@RequestBody JobPostDto jobPostDto) {
+    public JobPost create(@Valid @RequestBody JobPostDto jobPostDto) {
         return jobPostService.create(
                 jobPostDto
         );
     }
 
     @PutMapping("/{id}")
-    public JobPost update(@PathVariable Long id, @RequestBody JobPostDto jobPostDto) {
+    public JobPost update(@PathVariable Long id,
+                          @Valid  @RequestBody JobPostDto jobPostDto) {
 
 
         return jobPostService.update(

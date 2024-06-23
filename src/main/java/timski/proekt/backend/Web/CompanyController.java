@@ -7,6 +7,7 @@ import timski.proekt.backend.Model.Company;
 import timski.proekt.backend.Model.Dto.CompanyDto;
 import timski.proekt.backend.Service.CompanyService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,14 +19,15 @@ public class CompanyController { //todo: dodadi reviews??
 
 
     @GetMapping("/{id}/edit")
-    public String showEdit(@PathVariable Long id, Model model) {
+    public String showEdit(@PathVariable Long id,
+                           Model model) {
         Company company = companyService.findById(id);
         model.addAttribute("company", company);
         return "";
     }
 
     @PostMapping // premesti u logincontroller
-    public Company create(@RequestBody CompanyDto companyDto) {
+    public Company create(@Valid @RequestBody CompanyDto companyDto) {
         return companyService.create(
                 companyDto
         );
@@ -34,7 +36,7 @@ public class CompanyController { //todo: dodadi reviews??
 
     @PutMapping("/{id}/")
     public Company update(@PathVariable Long id,
-                          @RequestBody CompanyDto companyDto) {
+                          @Valid @RequestBody CompanyDto companyDto) {
         return companyService.update(
                 id,
                 companyDto

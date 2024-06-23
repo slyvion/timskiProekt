@@ -8,6 +8,8 @@ import timski.proekt.backend.Model.Dto.UserPasswordUpdateDto;
 import timski.proekt.backend.Model.User;
 import timski.proekt.backend.Service.UserService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -31,7 +33,7 @@ public class UserController {
 
     @PostMapping("/{id}/passwordUpdate")
     public User updatePassword(@PathVariable Long id,
-                                 @RequestBody UserPasswordUpdateDto userDto) {
+                                 @Valid @RequestBody UserPasswordUpdateDto userDto) {
         return userService.PasswordUpdate(
                 id,
                 userDto
@@ -39,7 +41,7 @@ public class UserController {
     }
     @PostMapping("/{id}/emailUpdate")
     public User updateEmail(@PathVariable long id,
-                              @RequestBody UserEmailUpdateDto userDto){
+                            @Valid @RequestBody UserEmailUpdateDto userDto){
         return userService.EmailUpdate(
           id,
           userDto

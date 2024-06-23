@@ -3,20 +3,27 @@ package timski.proekt.backend.Model.Dto;
 import lombok.Data;
 import timski.proekt.backend.Model.Constants.EmploymentType;
 import timski.proekt.backend.Model.Constants.JobType;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class JobPostDto {
 
+    @NotBlank(message = "Title is required")
     private String title;
 
+    @NotBlank(message = "Job post description is required")
     private String description;
+
 
     private long companyId;
 
+    @NotBlank(message = "Job Type is required")
     private JobType jobType;
 
+    @NotBlank(message = "Employment type is required")
     private EmploymentType employmentType;
 
+    @NotBlank(message = "Location is required")
     private String location;
 
 
