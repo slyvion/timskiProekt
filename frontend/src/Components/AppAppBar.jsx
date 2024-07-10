@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -82,13 +82,15 @@ function AppAppBar() {
                                 px: 0,
                             }}
                         >
-                            <img
-                                src={
-                                    'src/Logo.png'
-                                }
-                                style={logoStyle}
-                                alt="logo of JobHub"
-                            />
+                            <Link to={"/"}>
+                                <img
+                                    src={
+                                        'src/Logo.png'
+                                    }
+                                    style={logoStyle}
+                                    alt="logo of JobHub"
+                                />
+                            </Link>
                             <Box sx={{display: {xs: 'none', md: 'flex'}}}>
                                 <MenuItem
                                     onClick={() => scrollToSection('features')}
@@ -107,7 +109,6 @@ function AppAppBar() {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    // onClick={() => scrollToSection('section')}
                                     sx={{py: '6px', px: '12px'}}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -115,7 +116,6 @@ function AppAppBar() {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    // onClick={() => scrollToSection('jobposts')}
                                     sx={{py: '6px', px: '12px'}}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -135,9 +135,8 @@ function AppAppBar() {
                                 color="primary"
                                 variant="text"
                                 size="small"
-                                component="a"
-                                href=""
-                                target="_blank"
+                                component={Link}
+                                to="/sign-in"
                             >
                                 Sign in
                             </Button>
@@ -145,9 +144,8 @@ function AppAppBar() {
                                 color="primary"
                                 variant="contained"
                                 size="small"
-                                component="a"
-                                href=""
-                                target="_blank"
+                                component={Link}
+                                to="/sign-up"
                             >
                                 Sign up
                             </Button>
@@ -191,9 +189,8 @@ function AppAppBar() {
                                         <Button
                                             color="primary"
                                             variant="contained"
-                                            component="a"
-                                            href="/material-ui/getting-started/templates/sign-up/"
-                                            target="_blank"
+                                            component={Link}
+                                            to="/sign-up"
                                             sx={{width: '100%'}}
                                         >
                                             Sign up
@@ -203,9 +200,8 @@ function AppAppBar() {
                                         <Button
                                             color="primary"
                                             variant="outlined"
-                                            component="a"
-                                            href="/material-ui/getting-started/templates/sign-in/"
-                                            target="_blank"
+                                            component={Link}
+                                            to="/sign-in"
                                             sx={{width: '100%'}}
                                         >
                                             Sign in
