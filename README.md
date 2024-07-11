@@ -15,9 +15,9 @@ Before you start the project, make sure you have already installed the following
 
   - Node.js and npm: Ensure you have Node.js installed (version 14 or higher) along with npm.
   - WebStorm: Use WebStorm as your Integrated Development Environment (IDE) for frontend development.
-  - For Backend (Java Spring)
 
-- Java Development Kit (JDK): Install JDK 11 or higher.
+- For Backend (Java Spring)
+  - Java Development Kit (JDK): Install JDK 11 or higher.
   - IntelliJ IDEA: Use IntelliJ IDEA as your Integrated Development Environment (IDE) for backend development.
   - Apache Maven: Maven is required for building and managing Java-based projects.
 
