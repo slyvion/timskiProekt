@@ -23,5 +23,5 @@
 
 - Database
   - PostgreSQL: Install and set up PostgreSQL (version 12 or higher) for the database backend.
-  - By default its setup for localhost:5432, if your port is different, please change it in the application properties.
+    - By default its setup for localhost:5432, if your port is different, please change it in the application properties.
 
