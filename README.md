@@ -9,7 +9,7 @@
 - PostgreSQL
 
 **Prerequisites**
-Before you start the project, make sure you have already installed the following 
+- Before you start the project, make sure you have already installed the following 
 
 - For Frontend (React with Vite)
 
@@ -21,7 +21,7 @@ Before you start the project, make sure you have already installed the following
   - IntelliJ IDEA: Use IntelliJ IDEA as your Integrated Development Environment (IDE) for backend development.
   - Apache Maven: Maven is required for building and managing Java-based projects.
 
--Database
+- Database
   - PostgreSQL: Install and set up PostgreSQL (version 12 or higher) for the database backend.
   - By default its setup for localhost:5432, if your port is different, please change it in the application properties.
 
