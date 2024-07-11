@@ -1,7 +1,7 @@
 
 # JobHub
 
-*description*
+*JobHub is a web application on which users can find job openings in the IT sector. The platform enables users to read and post company reviews, facilitating informed job or internship decisions.*
 
 **Technologies Used**
 - Java Spring
