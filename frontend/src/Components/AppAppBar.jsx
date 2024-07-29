@@ -82,15 +82,7 @@ function AppAppBar() {
                                 px: 0,
                             }}
                         >
-                            <Link to={"/"}>
-                                <img
-                                    src={
-                                        'src/Logo.png'
-                                    }
-                                    style={logoStyle}
-                                    alt="logo of JobHub"
-                                />
-                            </Link>
+d
                             <Box sx={{display: {xs: 'none', md: 'flex'}}}>
                                 <MenuItem
                                     onClick={() => scrollToSection('features')}
@@ -109,14 +101,18 @@ function AppAppBar() {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    sx={{py: '6px', px: '12px'}}
+                                    component={Link}
+                                    sx={{ py: '6px', px: '12px' }}
+                                    to="/companies"
                                 >
                                     <Typography variant="body2" color="text.primary">
                                         Companies
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    sx={{py: '6px', px: '12px'}}
+                                    component={Link}
+                                    sx={{ py: '6px', px: '12px' }}
+                                    to="/jobposts"
                                 >
                                     <Typography variant="body2" color="text.primary">
                                         JobPosts

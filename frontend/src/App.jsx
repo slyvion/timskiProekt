@@ -7,8 +7,12 @@ import Hero from './Components/HomePage/Hero';
 import Footer from './Components/HomePage/Footer';
 import SignUpUser from './Components/Login/SignUpUser.jsx';
 import SignIn from "./Components/Login/SignIn.jsx";
+import CompaniesPage from "./Components/Company/CompaniesPage.jsx";
+import JobPostPage from "./Components/JobPost/JobPostPage.jsx";
+
 
 function App() {
+
     return (
         <Router>
             <Routes>
@@ -25,9 +29,13 @@ function App() {
                 </Route>
                 <Route path="sign-in" element={<SignIn />} />
                 <Route path="sign-up" element={<SignUpUser />} />
+                <Route path="companies" element={<CompaniesPage />} />
+                <Route path="jobposts" element={<JobPostPage />} />
             </Routes>
         </Router>
+
     );
+
 }
 
 export default App;

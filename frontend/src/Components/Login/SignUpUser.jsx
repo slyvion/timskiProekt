@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,19 +8,19 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CountrySelect from './CountrySelect.jsx'
+import { alpha } from '@mui/material/styles';
 
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="/">
-                Your Website
+                JobHub
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -28,7 +28,6 @@ function Copyright(props) {
     );
 }
 
-const defaultTheme = createTheme();
 
 export default function SignUp() {
     const [value, setValue] = React.useState(0);
@@ -47,7 +46,16 @@ export default function SignUp() {
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh', // Full viewport height
+                //backgroundColor: 'white', // Your desired background color
+            }}
+        >
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -58,7 +66,7 @@ export default function SignUp() {
                         alignItems: 'center',
                     }}
                 >
-                    <Link to={"/"}>
+                    <Link href={"/"}>
                         <img
                             src={
                                 'src/Logo.png'
@@ -136,7 +144,7 @@ export default function SignUp() {
                             </Button>
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link href={"/sign-in"} variant="body2">
                                         Already have an account? Sign in
                                     </Link>
                                 </Grid>
@@ -166,6 +174,9 @@ export default function SignUp() {
                                         name="companyEmail"
                                         autoComplete="email"
                                     />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <CountrySelect />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
@@ -206,7 +217,7 @@ export default function SignUp() {
                             </Button>
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
-                                    <Link to={"/sign-in"} variant="body2">
+                                    <Link href={"/sign-in"} variant="body2">
                                         Already have an account? Sign in
                                     </Link>
                                 </Grid>
@@ -216,6 +227,6 @@ export default function SignUp() {
                 </Box>
                 <Copyright sx={{ mt: 5 }} />
             </Container>
-        </ThemeProvider>
+        </Box>
     );
 }
