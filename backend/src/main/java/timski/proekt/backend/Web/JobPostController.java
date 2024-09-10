@@ -20,25 +20,11 @@ public class JobPostController {
     private CompanyService companyService;
 
     @GetMapping
-    public String showList(Model model) {
+    public List<JobPost> showList(Model model) {
         List<JobPost> jobPosts = jobPostService.listAll();
-        model.addAttribute("jobPosts", jobPosts);
-        return "";
+        return jobPosts;
     }
 
-    @GetMapping("/add")
-    public String showAdd(Model model) {
-        model.addAttribute("jobPost", new JobPost());
-        return "";
-    }
-
-    @GetMapping("/{id}/edit")
-    public String showEdit(@PathVariable Long id,
-                           Model model) {
-        JobPost jobPost = jobPostService.findById(id);
-        model.addAttribute("jobPost", jobPost);
-        return "";
-    }
 
     @PostMapping
     public JobPost create(@Valid @RequestBody JobPostDto jobPostDto) {
@@ -47,7 +33,7 @@ public class JobPostController {
         );
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/edit")
     public JobPost update(@PathVariable Long id,
                           @Valid  @RequestBody JobPostDto jobPostDto) {
 

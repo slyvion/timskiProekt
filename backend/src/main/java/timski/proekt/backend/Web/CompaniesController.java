@@ -18,15 +18,9 @@ public class CompaniesController {
     private CompanyService companyService;
 
     @GetMapping("")
-    public String showList(Model model) {
+    public List<Company> showList() {
         List<Company> companies = companyService.listAll();
-        model.addAttribute("companies", companies);
-        return "";
+        return companies;
     }
 
-    @GetMapping("/add") // has role admin?
-    public String showAdd(Model model) {
-        model.addAttribute("company", new Company());
-        return "";
-    }
 }

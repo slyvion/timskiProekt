@@ -78,7 +78,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> findByRatingGreaterThan(int rating) {
+    public List<Review> findByRatingGreaterThan(long rating) {
         return reviewRepository.findReviewsByRatingGreaterThan(rating);
     }
 }

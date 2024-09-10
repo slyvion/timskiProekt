@@ -18,13 +18,6 @@ public class CompanyController { //todo: dodadi reviews??
     private CompanyService companyService;
 
 
-    @GetMapping("/{id}/edit")
-    public String showEdit(@PathVariable Long id,
-                           Model model) {
-        Company company = companyService.findById(id);
-        model.addAttribute("company", company);
-        return "";
-    }
 
     @PostMapping // premesti u logincontroller
     public Company create(@Valid @RequestBody CompanyDto companyDto) {
@@ -34,7 +27,7 @@ public class CompanyController { //todo: dodadi reviews??
     }
 
 
-    @PutMapping("/{id}/")
+    @PutMapping("/{id}/edit")
     public Company update(@PathVariable Long id,
                           @Valid @RequestBody CompanyDto companyDto) {
         return companyService.update(

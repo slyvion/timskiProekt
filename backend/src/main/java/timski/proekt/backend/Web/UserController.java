@@ -20,16 +20,9 @@ public class UserController {
     @GetMapping("/{id}/profile")
     public String showProfile(@PathVariable Long id, Model model) {
         User user = userService.findById(id);
-        model.addAttribute("user", user);
         return "";
     }
 
-    @GetMapping("/{id}/edit")
-    public String showEdit(@PathVariable Long id, Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        return "";
-    }
 
     @PostMapping("/{id}/passwordUpdate")
     public User updatePassword(@PathVariable Long id,

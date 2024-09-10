@@ -1,12 +1,11 @@
 package timski.proekt.backend.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Id;
 import lombok.*;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -28,6 +27,9 @@ public class Company {
     private String description;
     private String location;
 
+    @OneToMany
+    private List<Review> reviews = new ArrayList<>();
+
     public Company(String companyName, String email, String password, String website, String description, String location) {
         this.companyName = companyName;
         this.email = email;
@@ -35,5 +37,6 @@ public class Company {
         this.website = website;
         this.description = description;
         this.location = location;
+        this.reviews = new ArrayList<>();
     }
 }

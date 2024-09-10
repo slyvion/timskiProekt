@@ -4,6 +4,7 @@ import lombok.Data;
 import timski.proekt.backend.Model.Constants.EmploymentType;
 import timski.proekt.backend.Model.Constants.JobType;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class JobPostDto {
@@ -14,18 +15,16 @@ public class JobPostDto {
     @NotBlank(message = "Job post description is required")
     private String description;
 
+    private long companyId;  // Assuming this is used to link to the company
 
-    private long companyId;
-
-    @NotBlank(message = "Job Type is required")
+    @NotNull(message = "Job Type is required")
     private JobType jobType;
 
-    @NotBlank(message = "Employment type is required")
+    @NotNull(message = "Employment type is required")
     private EmploymentType employmentType;
 
     @NotBlank(message = "Location is required")
     private String location;
-
 
     public JobPostDto() {
     }
