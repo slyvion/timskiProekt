@@ -102,8 +102,8 @@ d
                                 </MenuItem>
                                 <MenuItem
                                     component={Link}
-                                    sx={{ py: '6px', px: '12px' }}
                                     to="/companies"
+                                    sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
                                         Companies
@@ -111,8 +111,8 @@ d
                                 </MenuItem>
                                 <MenuItem
                                     component={Link}
-                                    sx={{ py: '6px', px: '12px' }}
                                     to="/jobposts"
+                                    sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
                                         JobPosts

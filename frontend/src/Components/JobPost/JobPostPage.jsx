@@ -1,5 +1,6 @@
 import JobPostFilter from "./JobPostFilter.jsx";
 import JobPost from "./JobPost.jsx";
+import AppAppBar from "../AppAppBar.jsx";
 const jobPosts = [
     {
         id: 1,
@@ -46,6 +47,7 @@ const jobPosts = [
 export default function JobPostPage() {
     return (
         <div>
+            <AppAppBar show={false}/>
             <JobPostFilter />
             <span>
                 {jobPosts.map((job) => (
