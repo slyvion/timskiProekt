@@ -9,22 +9,27 @@ export default function JobPost({ job }) {
             p: 2,
             border: '1px solid #ddd',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            maxWidth: 600, // Adjust width as needed
-            mb: 2, // Margin bottom for spacing between cards
-            mt: 2 // Margin top for spacing between cards
+            maxWidth: 600,
+            mb: 2,
+            mt: 2
         }}>
             <CardMedia
                 component="img"
                 sx={{
-                    width: 80, // Adjust width as needed
-                    height: 80, // Adjust height as needed
+                    width: 80,
+                    height: 80,
                     objectFit: 'contain'
                 }}
                 image={job.logo}
                 alt={job.companyName}
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', ml: 2, flex: 1 }}>
-                <Typography variant="h6" noWrap sx={{ mb: 1 }}>{job.title}</Typography>
+                <Typography variant="h6" noWrap sx={{ mb: 1 }}>
+                    {job.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" noWrap sx={{ mb: 1 }}>
+                    {job.jobType}
+                </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                     <Typography variant="body2" color="text.secondary" noWrap sx={{ mr: 1 }}>
                         {job.companyName}

@@ -49,7 +49,7 @@ function CompanyProfile() {
     };
 
     const company = {
-        image: "/default-company.png", // Default image path
+        image: "/default-company.png",
         name: "Tech Solutions Inc.",
         rating: 4.5,
         location: "New York, NY",

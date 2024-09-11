@@ -18,7 +18,7 @@ const logoStyle = {
     cursor: 'pointer',
 };
 
-function AppAppBar() {
+function AppAppBar( ) {
     const [open, setOpen] = React.useState(false);
 
     const toggleDrawer = (newOpen) => () => {
@@ -88,7 +88,7 @@ d
                                     onClick={() => scrollToSection('features')}
                                     sx={{py: '6px', px: '12px'}}
                                 >
-                                    <Typography variant="body2" color="text.primary">
+                                   <Typography variant="body2" color="text.primary">
                                         Features
                                     </Typography>
                                 </MenuItem>
