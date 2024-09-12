@@ -1,7 +1,8 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box } from "@mui/material";
 import { styled } from "@mui/system";
 import StarIcon from "@mui/icons-material/Star";
+import { useParams } from "react-router-dom";  // Import useParams from react-router-dom
 
 const Root = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
@@ -42,29 +43,48 @@ const TabContent = styled(Box)(({ theme }) => ({
 }));
 
 function CompanyProfile() {
-    const [value, setValue] = React.useState(0);
+    const { id } = useParams();
+    const [value, setValue] = useState(0);
+    const [company, setCompany] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const company = {
-        image: "/default-company.png",
-        name: "Tech Solutions Inc.",
-        rating: 4.5,
-        location: "New York, NY",
-    };
+    useEffect(() => {
+        const fetchCompanyData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/company/${id}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch company data");
+                }
+                const data = await response.json();
+                setCompany(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCompanyData();
+    }, [id]);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     return (
         <Root>
             <Grid container alignItems="center" justifyContent="center">
-                <StyledAvatar src={company.image} />
-                <CompanyName>{company.name}</CompanyName>
+                <StyledAvatar src={company.image || "/default-company.png"} />
+                <CompanyName>{company.companyName}</CompanyName>
             </Grid>
             <Details container>
                 <Rating item>
                     <StarIcon color="secondary" />
-                    <Typography>{company.rating}</Typography>
+                    <Typography>{company.rating || 'N/A'}</Typography>
                 </Rating>
                 <Location item>
                     <Typography>{company.location}</Typography>
@@ -76,12 +96,12 @@ function CompanyProfile() {
                 <Tab label="Reviews" />
             </Tabs>
             <TabContent>
-                {value === 0 && <Typography>About Us content goes here.</Typography>}
-                {value === 1 && <Typography>JobPosts content goes here.</Typography>}
-                {value === 2 && <Typography>Reviews content goes here.</Typography>}
+                {value === 0 && <Typography>{company.description}</Typography>}
+                {value === 1 && <Typography> JobPosts tuka </Typography>}
+                {value === 2 && <Typography> Reviews tuka </Typography>}
             </TabContent>
         </Root>
-    );
+    ); //todo: fetchni jobposts i reviews
 }
 
 export default CompanyProfile;

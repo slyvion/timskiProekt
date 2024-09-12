@@ -74,7 +74,7 @@ export default function Footer() {
                                     'src/Logo.png'
                                 }
                                 style={logoStyle}
-                                alt="logo of sitemark"
+                                alt="logo of jobhub"
                             />
                         </Box>
                         <Typography variant="body2" fontWeight={600} gutterBottom>

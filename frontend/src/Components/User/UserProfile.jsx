@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box } from "@mui/material";
 import { styled } from "@mui/system";
+import { useParams } from "react-router-dom";
 
 const Root = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
@@ -20,45 +21,60 @@ const UserName = styled(Typography)({
     fontSize: "24px",
 });
 
-const Country = styled(Typography)(({ theme }) => ({
-    marginTop: theme.spacing(1),
-    color: theme.palette.text.secondary,
-}));
 
 const TabContent = styled(Box)(({ theme }) => ({
     marginTop: theme.spacing(2),
 }));
 
 function UserProfile() {
-    const [value, setValue] = React.useState(0);
+    const { id } = useParams();  // Get the 'id' parameter from the URL
+    const [value, setValue] = useState(0);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const user = {
-        image: "/default-user.png", // Default image path
-        name: "John Doe",
-        country: "United States",
-    };
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/user/${id}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user data");
+                }
+                const data = await response.json();
+                setUser(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUserData();
+    }, [id]);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     return (
         <Root>
             <Grid container alignItems="center" justifyContent="center">
-                <StyledAvatar src={user.image} />
-                <UserName>{user.name}</UserName>
-                <Country>{user.country}</Country>
+                <StyledAvatar src={user.image || "/default-user.png"} />
+                <UserName>{user.username}</UserName>
             </Grid>
             <Tabs value={value} onChange={handleChange} centered>
                 <Tab label="Reviews" />
                 <Tab label="Saved JobPosts" />
             </Tabs>
             <TabContent>
-                {value === 0 && <Typography>Reviews content goes here.</Typography>}
-                {value === 1 && <Typography>Saved JobPosts content goes here.</Typography>}
+                {value === 0 && <Typography>reviews </Typography>}
+                {value === 1 && <Typography>saved JobPosts </Typography>}
             </TabContent>
         </Root>
-    );
+    ); //todo: fetchni reviews
 }
 
 export default UserProfile;

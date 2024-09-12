@@ -52,8 +52,8 @@ export default function SignUp() {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '100vh', // Full viewport height
-                //backgroundColor: 'white', // Your desired background color
+                height: '100vh',
+
             }}
         >
             <Container component="main" maxWidth="xs">
