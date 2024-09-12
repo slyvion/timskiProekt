@@ -63,6 +63,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<Review> findAllById(long id) {
+        return reviewRepository.findAllById(id);
+    }
+
+    @Override
     public List<Review> findByDate(Date postDate) {
         return reviewRepository.findReviewsByPostDate(postDate);
     }

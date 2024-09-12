@@ -47,6 +47,7 @@ public class CompanyServiceImpl implements CompanyService {
                 companyDto.getWebsite(),
                 companyDto.getDescription(),
                 companyDto.getLocation()
+
         );
         return companyRepository.save(company);
     }

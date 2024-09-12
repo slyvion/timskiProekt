@@ -27,6 +27,7 @@ public class Company {
     private String description;
     private String location;
 
+
     @OneToMany
     private List<Review> reviews = new ArrayList<>();
 

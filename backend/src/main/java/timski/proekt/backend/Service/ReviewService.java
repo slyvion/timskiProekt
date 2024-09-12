@@ -16,6 +16,9 @@ public interface ReviewService {
     Review update(Long id, ReviewDto reviewDto);
 
     Review findById(Long id);
+
+    List<Review> findAllById(long id);
+
     List<Review> findByDate(Date postDate);
 
     List<Review> findByCompany(Company company);

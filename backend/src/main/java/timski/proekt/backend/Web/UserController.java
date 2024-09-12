@@ -17,12 +17,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{id}/profile")
-    public String showProfile(@PathVariable Long id, Model model) {
-        User user = userService.findById(id);
-        return "";
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return userService.findById(id);
     }
-
 
     @PostMapping("/{id}/passwordUpdate")
     public User updatePassword(@PathVariable Long id,

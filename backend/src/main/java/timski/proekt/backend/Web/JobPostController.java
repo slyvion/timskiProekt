@@ -3,6 +3,7 @@ package timski.proekt.backend.Web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import timski.proekt.backend.Model.Company;
 import timski.proekt.backend.Model.Dto.JobPostDto;
 import timski.proekt.backend.Model.JobPost;
 import timski.proekt.backend.Service.CompanyService;
@@ -17,10 +18,14 @@ public class JobPostController {
 
     @Autowired
     private JobPostService jobPostService;
-    private CompanyService companyService;
+
+    @GetMapping("/{id}")
+    public JobPost getJobPostById(@PathVariable Long id) {
+        return jobPostService.findById(id);
+    }
 
     @GetMapping
-    public List<JobPost> showList(Model model) {
+    public List<JobPost> showList() {
         List<JobPost> jobPosts = jobPostService.listAll();
         return jobPosts;
     }

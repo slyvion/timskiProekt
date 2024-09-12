@@ -5,21 +5,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import timski.proekt.backend.Model.Company;
 import timski.proekt.backend.Model.Dto.CompanyDto;
+import timski.proekt.backend.Model.Dto.ReviewDto;
+import timski.proekt.backend.Model.Review;
 import timski.proekt.backend.Service.CompanyService;
+import timski.proekt.backend.Service.ReviewService;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/company")
-public class CompanyController { //todo: dodadi reviews??
+public class CompanyController {
 
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private ReviewService reviewService;
 
+    @GetMapping("/{id}")
+    public Company getCompanyById(@PathVariable Long id) {
+        return companyService.findById(id);
+    }
 
-    @PostMapping // premesti u logincontroller
+    @PostMapping
     public Company create(@Valid @RequestBody CompanyDto companyDto) {
         return companyService.create(
                 companyDto
@@ -38,14 +47,19 @@ public class CompanyController { //todo: dodadi reviews??
 
 
     @PostMapping("/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    public String deleteCompany(@PathVariable Long id) {
         companyService.delete(id);
         return "redirect:/companies";
     }
 
-    //@PostMapping(/{id}/add-reviews)
+    @PostMapping("/{id}/add-review")
+    public Review addReview(@Valid @RequestBody ReviewDto reviewDto, @PathVariable String id) {
+        return reviewService.create(reviewDto);
+    }
 
-    //@Postmapping(/{id}/delete-review
 
-    //@Postmapping({id}/showReviews
+    @GetMapping("/{id}/reviews")
+    public List<Review> showReviews(@PathVariable Long id) {
+        return reviewService.findAllById(id);
+    }
 }
