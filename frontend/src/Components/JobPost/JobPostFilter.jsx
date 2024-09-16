@@ -1,11 +1,13 @@
 import { TextField, FormControl, InputLabel, Select, MenuItem, Grid, Button, Box } from '@mui/material';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import {useSearchParams} from "react-router-dom";
 
 export default function JobPostFilter({ onFilter }) {
     const [companyName, setCompanyName] = useState('');
     const [title, setTitle] = useState('');
     const [jobType, setJobType] = useState('');
     const [employmentType, setEmploymentType] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleFilter = () => {
         const filterParams = {
@@ -14,8 +16,34 @@ export default function JobPostFilter({ onFilter }) {
             jobType: jobType || undefined,
             employmentType: employmentType || undefined,
         };
+
+        const params = {};
+        if (companyName) params.companyName = companyName;
+        if (title) params.title = title;
+        if (jobType) params.jobType = jobType;
+        if (employmentType) params.employmentType = employmentType;
+
+        setSearchParams(params);
         onFilter(filterParams);
     };
+    useEffect(() => {
+        const companyNameParam = searchParams.get('companyName') || '';
+        const titleParam = searchParams.get('title') || '';
+        const jobTypeParam = searchParams.get('jobType') || '';
+        const employmentTypeParam = searchParams.get('employmentType') || '';
+
+        setCompanyName(companyNameParam);
+        setTitle(titleParam);
+        setJobType(jobTypeParam);
+        setEmploymentType(employmentTypeParam);
+
+        onFilter({
+            companyName: companyNameParam || undefined,
+            title: titleParam || undefined,
+            jobType: jobTypeParam || undefined,
+            employmentType: employmentTypeParam || undefined
+        });
+    }, []);
 
     return (
         <Box sx={{ width: '100%', backgroundColor: '#fff', padding: '16px' }}>
