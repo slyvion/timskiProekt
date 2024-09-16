@@ -38,8 +38,7 @@ public class ReviewServiceImpl implements ReviewService {
                 user,
                 company,
                 reviewDto.getRating(),
-                reviewDto.getComment(),
-                reviewDto.getPostDate()
+                reviewDto.getComment()
         );
 
         return reviewRepository.save(review);

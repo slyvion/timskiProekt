@@ -30,12 +30,12 @@ public class ReviewDto {
     public ReviewDto() {
     }
 
-    public ReviewDto(String title, long userId, long companyId, Long rating, String comment, Date postDate) {
+    public ReviewDto(String title, long userId, long companyId, Long rating, String comment) {
         this.title = title;
         this.userId = userId;
         this.companyId = companyId;
         this.rating = rating;
         this.comment = comment;
-        this.postDate = postDate;
+
     }
 }

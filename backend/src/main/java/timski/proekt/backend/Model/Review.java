@@ -31,13 +31,17 @@ public class Review {
     private String comment; // non-required
 
     private Date postDate;
-
-    public Review(String title, User user, Company company, Long rating, String comment, Date postDate) {
+    
+    @PrePersist
+    protected void onCreate() {
+        this.postDate = new Date();
+    }
+    public Review(String title, User user, Company company, Long rating, String comment) {
         this.title = title;
         this.user = user;
         this.company = company;
         this.rating = rating;
         this.comment = comment;
-        this.postDate = postDate;
+
     }
 }
