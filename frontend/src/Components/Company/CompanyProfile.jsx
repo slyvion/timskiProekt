@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box } from "@mui/material";
+import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import StarIcon from "@mui/icons-material/Star";
-import { useParams } from "react-router-dom";  // Import useParams from react-router-dom
+import Review from '../Review/Review.jsx';
+import JobPost from '../JobPost/JobPost.jsx';
+import { useParams, useNavigate } from "react-router-dom";
 
 const Root = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
@@ -44,13 +46,20 @@ const TabContent = styled(Box)(({ theme }) => ({
 
 function CompanyProfile() {
     const { id } = useParams();
+    const navigate = useNavigate(); // Initialize useNavigate
     const [value, setValue] = useState(0);
     const [company, setCompany] = useState(null);
+    const [jobPosts, setJobPosts] = useState([]);
+    const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+    };
+
+    const handleAddReviewClick = () => {
+        navigate(`/company/${id}/add-review`); // Navigate to the add review page with company ID
     };
 
     useEffect(() => {
@@ -64,12 +73,37 @@ function CompanyProfile() {
                 setCompany(data);
             } catch (err) {
                 setError(err.message);
-            } finally {
-                setLoading(false);
             }
         };
 
-        fetchCompanyData();
+        const fetchJobPosts = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/jobposts/company/${id}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch job posts");
+                }
+                const data = await response.json();
+                setJobPosts(data);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        const fetchReviews = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/reviews/company/${id}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch reviews");
+                }
+                const data = await response.json();
+                setReviews(data);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        Promise.all([fetchCompanyData(), fetchJobPosts(), fetchReviews()])
+            .finally(() => setLoading(false));
     }, [id]);
 
     if (loading) return <p>Loading...</p>;
@@ -78,12 +112,12 @@ function CompanyProfile() {
     return (
         <Root>
             <Grid container alignItems="center" justifyContent="center">
-                <StyledAvatar src={company.image || "/default-company.png"} />
+                <StyledAvatar src={company.image || "/joblogo.jpg"} />
                 <CompanyName>{company.companyName}</CompanyName>
             </Grid>
             <Details container>
                 <Rating item>
-                    <StarIcon color="secondary" />
+                    <StarIcon sx={{ color: '#FFD700' }} />
                     <Typography>{company.rating || 'N/A'}</Typography>
                 </Rating>
                 <Location item>
@@ -97,11 +131,38 @@ function CompanyProfile() {
             </Tabs>
             <TabContent>
                 {value === 0 && <Typography>{company.description}</Typography>}
-                {value === 1 && <Typography> JobPosts tuka </Typography>}
-                {value === 2 && <Typography> Reviews tuka </Typography>}
+
+                {value === 1 && (
+                    <Box>
+                        {jobPosts.length > 0 ? (
+                            jobPosts.map((job) => (
+                                <JobPost key={job.id} job={job} />
+                            ))
+                        ) : (
+                            <Typography>No job posts available</Typography>
+                        )}
+                    </Box>
+                )}
+
+                {value === 2 && (
+                    <Box>
+                        {reviews.length > 0 ? (
+                            reviews.map((review) => (
+                                <Review key={review.id} review={review} />
+                            ))
+                        ) : (
+                            <Typography>No reviews available</Typography>
+                        )}
+                        <Box display="flex" justifyContent="center" mt={2}>
+                            <Button variant="contained" color="primary" onClick={handleAddReviewClick}>
+                                Add Review
+                            </Button>
+                        </Box>
+                    </Box>
+                )}
             </TabContent>
         </Root>
-    ); //todo: fetchni jobposts i reviews
+    );
 }
 
 export default CompanyProfile;
