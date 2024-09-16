@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import timski.proekt.backend.Model.Company;
+import timski.proekt.backend.Model.Constants.EmploymentType;
+import timski.proekt.backend.Model.Constants.JobType;
 import timski.proekt.backend.Model.Dto.JobPostDto;
 import timski.proekt.backend.Model.JobPost;
 import timski.proekt.backend.Service.CompanyService;
@@ -24,12 +26,25 @@ public class JobPostController {
         return jobPostService.findById(id);
     }
 
-    @GetMapping
-    public List<JobPost> showList() {
-        List<JobPost> jobPosts = jobPostService.listAll();
-        return jobPosts;
-    }
 
+    @GetMapping
+    public List<JobPost> jobPostsFilter(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Company company,
+            @RequestParam(required = false) String location,
+            @RequestParam(required = false) JobType jobType,
+            @RequestParam(required = false) EmploymentType employmentType) {
+
+        if( title == null &&
+            company == null &&
+            location == null &&
+            jobType == null &&
+            employmentType == null){
+            return jobPostService.listAll();
+        }
+        return jobPostService.jobPostFilter(
+                title, company, location, jobType, employmentType);
+    }
 
     @PostMapping
     public JobPost create(@Valid @RequestBody JobPostDto jobPostDto) {
@@ -54,4 +69,5 @@ public class JobPostController {
         jobPostService.delete(id);
         return "redirect:/jobposts";
     }
+
 }

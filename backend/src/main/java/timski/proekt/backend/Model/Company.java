@@ -27,6 +27,9 @@ public class Company {
     private String description;
     private String location;
 
+    @Column(nullable = true)
+    private double rating;
+
 
     @OneToMany
     private List<Review> reviews = new ArrayList<>();
@@ -39,5 +42,6 @@ public class Company {
         this.description = description;
         this.location = location;
         this.reviews = new ArrayList<>();
+        this.rating = 0;
     }
 }

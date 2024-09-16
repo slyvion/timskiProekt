@@ -31,4 +31,6 @@ public interface JobPostService {
     List<JobPost> findAllByJobType(JobType jobType);
 
     List<JobType> findAllByEmploymentType(EmploymentType employmentType);
+
+    List<JobPost> jobPostFilter(String title, Company company, String location, JobType jobType, EmploymentType employmentType);
 }

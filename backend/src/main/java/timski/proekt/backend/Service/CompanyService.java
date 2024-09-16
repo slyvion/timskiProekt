@@ -22,4 +22,6 @@ public interface CompanyService {
 
     List<Company> findAllByLocation(String Location);
 
+    List<Company> companyFilter(String name, String location, Double rating);
+
 }

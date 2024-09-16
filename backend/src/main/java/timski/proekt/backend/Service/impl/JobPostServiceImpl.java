@@ -1,5 +1,8 @@
 package timski.proekt.backend.Service.impl;
 
+
+import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import timski.proekt.backend.Model.Company;
 import timski.proekt.backend.Model.Constants.EmploymentType;
@@ -12,6 +15,7 @@ import timski.proekt.backend.Service.JobPostService;
 import timski.proekt.backend.exceptions.InvalidCompanyIdException;
 import timski.proekt.backend.exceptions.InvalidJobPostIdException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -98,5 +102,29 @@ public class JobPostServiceImpl implements JobPostService {
     @Override
     public List<JobType> findAllByEmploymentType(EmploymentType employmentType) {
         return jobPostRepository.findJobPostsByEmploymentType(employmentType);
+    }
+
+    @Override
+    public List<JobPost> jobPostFilter(String title, Company company, String location, JobType jobType, EmploymentType employmentType) {
+        return jobPostRepository.findAll((Specification<JobPost>) (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (title != null) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("title")), "%" + title.toLowerCase() + "%"));
+            }
+            if (company != null) {
+                predicates.add(criteriaBuilder.equal(root.get("company"), company));
+            }
+            if (location != null) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("location")), "%" + location.toLowerCase() + "%"));
+            }
+            if (jobType != null) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("jobType").as(String.class)), "%" + jobType.toString().toLowerCase() + "%"));
+            }
+            if (employmentType != null) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("employmentType").as(String.class)), "%" + employmentType.toString().toLowerCase() + "%"));
+            }
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        });
     }
 }

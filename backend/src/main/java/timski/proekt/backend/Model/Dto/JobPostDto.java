@@ -15,7 +15,7 @@ public class JobPostDto {
     @NotBlank(message = "Job post description is required")
     private String description;
 
-    private long companyId;  // Assuming this is used to link to the company
+    private long companyId;
 
     @NotNull(message = "Job Type is required")
     private JobType jobType;

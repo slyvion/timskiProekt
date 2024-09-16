@@ -54,12 +54,17 @@ public class CompanyController {
 
     @PostMapping("/{id}/add-review")
     public Review addReview(@Valid @RequestBody ReviewDto reviewDto, @PathVariable String id) {
-        return reviewService.create(reviewDto);
+        return reviewService.create(reviewDto); // ne rab
     }
 
 
     @GetMapping("/{id}/reviews")
     public List<Review> showReviews(@PathVariable Long id) {
-        return reviewService.findAllById(id);
+        return reviewService.findAllById(id); //ne rab
     }
+
+
+
+
+
 }
