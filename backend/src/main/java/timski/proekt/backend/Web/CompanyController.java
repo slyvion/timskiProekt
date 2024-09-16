@@ -23,7 +23,7 @@ public class CompanyController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // ova oti tuka mi zima site podatoci, mozam da pustam
     public Company getCompanyById(@PathVariable Long id) {
         return companyService.findById(id);
     }
@@ -54,14 +54,9 @@ public class CompanyController {
 
     @PostMapping("/{id}/add-review")
     public Review addReview(@Valid @RequestBody ReviewDto reviewDto, @PathVariable String id) {
-        return reviewService.create(reviewDto); // ne rab
+        return reviewService.create(reviewDto);
     }
 
-
-    @GetMapping("/{id}/reviews")
-    public List<Review> showReviews(@PathVariable Long id) {
-        return reviewService.findAllById(id); //ne rab
-    }
 
 
 

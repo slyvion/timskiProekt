@@ -1,5 +1,6 @@
 package timski.proekt.backend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Review {
     private User user;
 
     @ManyToOne
+    @JsonIgnore
     private Company company;
 
     private Long rating; // req

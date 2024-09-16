@@ -19,6 +19,10 @@ public interface ReviewService {
 
     List<Review> findAllById(long id);
 
+    List<Review> listAll();
+
+    List<Review> findAllByCompanyId(long id);
+
     List<Review> findByDate(Date postDate);
 
     List<Review> findByCompany(Company company);

@@ -3,6 +3,7 @@ package timski.proekt.backend.Model;
 import jakarta.persistence.*;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Company {
     private double rating;
 
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> reviews = new ArrayList<>();
 
     public Company(String companyName, String email, String password, String website, String description, String location) {
