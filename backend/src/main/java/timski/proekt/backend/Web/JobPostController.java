@@ -69,5 +69,9 @@ public class JobPostController {
         jobPostService.delete(id);
         return "redirect:/jobposts";
     }
+    @GetMapping("/company/{id}")
+    public List<JobPost> getJobPostByCompanyId(@PathVariable Long id) {
+        return jobPostService.findJobPostsByCompanyId(id);
+    }
 
 }

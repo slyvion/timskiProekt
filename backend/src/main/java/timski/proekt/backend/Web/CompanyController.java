@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import timski.proekt.backend.Model.Company;
 import timski.proekt.backend.Model.Dto.CompanyDto;
 import timski.proekt.backend.Model.Dto.ReviewDto;
+import timski.proekt.backend.Model.JobPost;
 import timski.proekt.backend.Model.Review;
 import timski.proekt.backend.Service.CompanyService;
+import timski.proekt.backend.Service.JobPostService;
 import timski.proekt.backend.Service.ReviewService;
 
 import javax.validation.Valid;
@@ -22,6 +24,7 @@ public class CompanyController {
 
     @Autowired
     private ReviewService reviewService;
+
 
     @GetMapping("/{id}") // ova oti tuka mi zima site podatoci, mozam da pustam
     public Company getCompanyById(@PathVariable Long id) {
@@ -56,9 +59,6 @@ public class CompanyController {
     public Review addReview(@Valid @RequestBody ReviewDto reviewDto, @PathVariable String id) {
         return reviewService.create(reviewDto);
     }
-
-
-
 
 
 

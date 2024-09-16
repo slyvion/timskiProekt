@@ -95,6 +95,11 @@ public class JobPostServiceImpl implements JobPostService {
     }
 
     @Override
+    public List<JobPost> findJobPostsByCompanyId(long id) {
+        return jobPostRepository.findJobPostsByCompanyId(id);
+    }
+
+    @Override
     public List<JobPost> findAllByJobType(JobType jobType) {
         return jobPostRepository.findJobPostsByJobType(jobType);
     }

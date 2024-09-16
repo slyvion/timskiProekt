@@ -28,6 +28,8 @@ public interface JobPostService {
 
     List<JobPost> findAllByLocation(String location);
 
+    List<JobPost> findJobPostsByCompanyId(long id);
+
     List<JobPost> findAllByJobType(JobType jobType);
 
     List<JobType> findAllByEmploymentType(EmploymentType employmentType);
