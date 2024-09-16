@@ -4,40 +4,46 @@ import JobPost from "./JobPost.jsx";
 import AppAppBar from "../AppAppBar.jsx";
 
 export default function JobPostPage() {
-
     const [jobPosts, setJobPosts] = useState([]);
-
     const [loading, setLoading] = useState(true);
-
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchJobPosts = async () => {
-            try {
+    const fetchJobPosts = async (filterParams = {}) => {
+        setLoading(true);
+        setError(null);
 
-                const response = await fetch("http://localhost:8080/jobposts");
+        try {
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+            const validParams = Object.entries(filterParams)
+                .filter(([key, value]) => value !== undefined && value !== '')
+                .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
 
-                const data = await response.json();
+            const queryString = new URLSearchParams(validParams).toString();
+            const url = `http://localhost:8080/jobposts${queryString ? `?${queryString}` : ''}`;
 
-                setJobPosts(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
-        };
 
+            const data = await response.json();
+            setJobPosts(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
         fetchJobPosts();
     }, []);
 
     return (
-        <div>
+        <div style={{ background: 'white', paddingTop: '100px', minHeight: '100vh' }}>
             <AppAppBar />
-            <JobPostFilter />
+            <JobPostFilter onFilter={fetchJobPosts} />
 
             {loading ? (
                 <p>Loading...</p>
@@ -45,10 +51,10 @@ export default function JobPostPage() {
                 <p>Error: {error}</p>
             ) : (
                 <span>
-          {jobPosts.map((job) => (
-              <JobPost key={job.id} job={job} />
-          ))}
-        </span>
+                    {jobPosts.map((job) => (
+                        <JobPost key={job.id} job={job} />
+                    ))}
+                </span>
             )}
         </div>
     );

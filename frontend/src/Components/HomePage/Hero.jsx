@@ -88,7 +88,7 @@ export default function Hero() {
                     </Stack>
                     <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
                         search through over 100&nbsp;
-                        <Link href="#" color="primary">
+                        <Link href="companies" color="primary">
                             companies
                         </Link>
                         !

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import CountrySelect from './CountrySelect.jsx'
+import CountrySelect from '../Company/CountrySelect.jsx'
 import { alpha } from '@mui/material/styles';
 
 function Copyright(props) {

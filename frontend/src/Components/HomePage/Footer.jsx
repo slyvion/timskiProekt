@@ -119,10 +119,10 @@ export default function Footer() {
                     <Link color="text.secondary" onClick={() => scrollToSection('highlights')}>
                         Highlights
                     </Link>
-                    <Link color="text.secondary" href="#">
+                    <Link color="text.secondary" href="companies">
                         Companies
                     </Link>
-                    <Link color="text.secondary" href="#">
+                    <Link color="text.secondary" href="jobposts">
                         JobPosts
                     </Link>
                 </Box>
