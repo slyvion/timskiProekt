@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -7,8 +8,15 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { Link as RouterLink } from 'react-router-dom';
 
 export default function Hero() {
+    const [companyName, setCompanyName] = useState('');
+
+    const handleInputChange = (event) => {
+        setCompanyName(event.target.value);
+    };
+
     return (
         <Box
             id="hero"
@@ -81,8 +89,16 @@ export default function Hero() {
                                 autoComplete: 'off',
                                 'aria-label': 'Enter a Company Name',
                             }}
+                            value={companyName}
+                            onChange={handleInputChange} // Capture the input value
                         />
-                        <Button variant="contained" color="primary">
+
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component={RouterLink} // Use RouterLink for internal navigation
+                            to={`/companies?companyName=${companyName}`} // Dynamically link to the inputted company name
+                        >
                             Search
                         </Button>
                     </Stack>
@@ -94,9 +110,7 @@ export default function Hero() {
                         !
                     </Typography>
                 </Stack>
-
             </Container>
         </Box>
-
     );
 }
