@@ -90,14 +90,14 @@ export default function Hero() {
                                 'aria-label': 'Enter a Company Name',
                             }}
                             value={companyName}
-                            onChange={handleInputChange} // Capture the input value
+                            onChange={handleInputChange}
                         />
 
                         <Button
                             variant="contained"
                             color="primary"
-                            component={RouterLink} // Use RouterLink for internal navigation
-                            to={`/companies?companyName=${companyName}`} // Dynamically link to the inputted company name
+                            component={RouterLink}
+                            to={`/companies?companyName=${companyName}`}
                         >
                             Search
                         </Button>
