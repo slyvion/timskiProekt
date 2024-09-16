@@ -7,6 +7,8 @@ export default function CompanyFilter({ onFilter }) {
     const [companyName, setCompanyName] = useState('');
     const [country, setCountry] = useState('');
     const [rating, setRating] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+
 
     const handleFilter = () => {
         const filterParams = {
@@ -14,8 +16,34 @@ export default function CompanyFilter({ onFilter }) {
             location: country || undefined,
             rating: rating || undefined
         };
+
+
+        const params = {};
+        if (companyName) params.companyName = companyName;
+        if (country) params.location = country;
+        if (rating) params.rating = rating;
+
+        setSearchParams(params);
         onFilter(filterParams);
     };
+
+
+    useEffect(() => {
+        const companyNameParam = searchParams.get('companyName') || '';
+        const countryParam = searchParams.get('location') || '';
+        const ratingParam = searchParams.get('rating') || '';
+
+        setCompanyName(companyNameParam);
+        setCountry(countryParam);
+        setRating(ratingParam);
+
+
+        onFilter({
+            companyName: companyNameParam || undefined,
+            location: countryParam || undefined,
+            rating: ratingParam || undefined
+        });
+    }, []);
 
     return (
         <Box sx={{ width: '100%', backgroundColor: '#fff', padding: '16px' }}>

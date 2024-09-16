@@ -21,7 +21,7 @@ export default function JobPost({ job }) {
                     height: 80,
                     objectFit: 'contain'
                 }}
-                image={job.logo}
+                image="/joblogo.jpg"
                 alt={job.companyName}
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', ml: 2, flex: 1 }}>

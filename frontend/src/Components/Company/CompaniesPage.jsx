@@ -38,10 +38,6 @@ export default function CompaniesPage() {
         }
     };
 
-    useEffect(() => {
-        fetchCompanies();
-    }, []);
-
     return (
         <div style={{ background: 'white', paddingTop: '100px', minHeight: '100vh' }}>
             <AppAppBar />
