@@ -26,7 +26,7 @@ public class CompanyController {
     private ReviewService reviewService;
 
 
-    @GetMapping("/{id}") // ova oti tuka mi zima site podatoci, mozam da pustam
+    @GetMapping("/{id}")
     public Company getCompanyById(@PathVariable Long id) {
         return companyService.findById(id);
     }

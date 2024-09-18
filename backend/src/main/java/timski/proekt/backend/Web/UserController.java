@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import timski.proekt.backend.Model.Dto.UserEmailUpdateDto;
 import timski.proekt.backend.Model.Dto.UserPasswordUpdateDto;
+import timski.proekt.backend.Model.Review;
 import timski.proekt.backend.Model.User;
+import timski.proekt.backend.Service.ReviewService;
 import timski.proekt.backend.Service.UserService;
 
 import javax.validation.Valid;
@@ -16,6 +18,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
@@ -38,4 +43,5 @@ public class UserController {
           userDto
         );
     }
+
 }

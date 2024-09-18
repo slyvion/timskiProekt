@@ -27,6 +27,6 @@ public interface ReviewService {
 
     List<Review> findByCompany(Company company);
 
-    List<Review> findByUser(User user);
+    List<Review> findAllByUserId(long id);
     List<Review> findByRatingGreaterThan(long rating);
 }
