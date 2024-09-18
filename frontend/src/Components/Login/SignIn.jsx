@@ -38,7 +38,7 @@ export default function SignIn() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" sx={{ background: 'white', paddingTop: '100px', minHeight: '100vh' }}>
                 <CssBaseline />
                 <Box
                     sx={{
@@ -46,6 +46,8 @@ export default function SignIn() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+
+
                     }}
                 >
                     <Link href={"/"}>

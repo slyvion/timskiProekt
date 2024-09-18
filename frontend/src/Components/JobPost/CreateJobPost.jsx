@@ -29,7 +29,6 @@ export default function CreateJobPost() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle form submission here
         console.log("Form submitted", formData);
     };
 

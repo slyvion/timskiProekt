@@ -11,8 +11,9 @@ import CompaniesPage from "./Components/Company/CompaniesPage.jsx";
 import JobPostPage from "./Components/JobPost/JobPostPage.jsx";
 import CompanyProfile from "./Components/Company/CompanyProfile.jsx";
 import UserProfile from "./Components/User/UserProfile.jsx";
-import Error from "./Components/Error.jsx"
+import Error from "./Components/ErrorPage.jsx"
 import CreateReview from "./Components/Review/CreateReview.jsx";
+import ErrorPage from "./Components/ErrorPage.jsx";
 
 function App() {
 
@@ -40,7 +41,7 @@ function App() {
                 <Route path="companies" element={<CompaniesPage />} />
                 <Route path="jobposts" element={<JobPostPage />} />
 
-
+                <Route path="/*" element={<ErrorPage />} />
 
             </Routes>
         </Router>

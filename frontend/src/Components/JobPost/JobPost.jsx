@@ -1,6 +1,7 @@
 import { Card, CardMedia, Typography, Box } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
+import Divider from '@mui/material/Divider';
 
 export default function JobPost({ job }) {
     return (
@@ -28,8 +29,12 @@ export default function JobPost({ job }) {
                 <Typography variant="h6" noWrap sx={{ mb: 1 }}>
                     {job.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" noWrap sx={{ mb: 1 }}>
-                    {job.jobType} | {job.employmentType}
+                <Typography variant="body2" color="text.secondary" noWrap sx={{ mb: 1, display: 'flex', alignItems: 'center' }}>
+                    {job.jobType}
+                    <Box sx={{ mx: 1, height: '1.2em' }}>
+                        <Divider orientation="vertical"  flexItem sx={{ height: '100%', borderColor: 'text.secondary' }} />
+                    </Box>
+                    {job.employmentType}
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                     <Link to={`/company/${job.company.id}`}>

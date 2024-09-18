@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box } from "@mui/material";
 import { styled } from "@mui/system";
 import { useParams } from "react-router-dom";
+import Review from '../Review/Review';
+import { format, parseISO } from 'date-fns';
 
 const Root = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
@@ -21,15 +23,15 @@ const UserName = styled(Typography)({
     fontSize: "24px",
 });
 
-
 const TabContent = styled(Box)(({ theme }) => ({
     marginTop: theme.spacing(2),
 }));
 
 function UserProfile() {
-    const { id } = useParams();  // Get the 'id' parameter from the URL
+    const { id } = useParams();
     const [value, setValue] = useState(0);
     const [user, setUser] = useState(null);
+    const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -53,7 +55,21 @@ function UserProfile() {
             }
         };
 
+        const fetchUserReviews = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/reviews/user/${id}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user reviews");
+                }
+                const data = await response.json();
+                setReviews(data);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
         fetchUserData();
+        fetchUserReviews();
     }, [id]);
 
     if (loading) return <p>Loading...</p>;
@@ -70,11 +86,21 @@ function UserProfile() {
                 <Tab label="Saved JobPosts" />
             </Tabs>
             <TabContent>
-                {value === 0 && <Typography>reviews </Typography>}
-                {value === 1 && <Typography>saved JobPosts </Typography>}
+                {value === 0 && (
+                    <Box>
+                        {reviews.length === 0 ? (
+                            <Typography>No reviews available</Typography>
+                        ) : (
+                            reviews.map((review) => (
+                                <Review key={review.id} review={review} />
+                            ))
+                        )}
+                    </Box>
+                )}
+                {value === 1 && <Typography> to be implemented </Typography>}
             </TabContent>
         </Root>
-    ); //todo: fetchni reviews
+    );
 }
 
 export default UserProfile;
