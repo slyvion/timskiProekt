@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -18,8 +18,9 @@ const logoStyle = {
     cursor: 'pointer',
 };
 
-function AppAppBar( ) {
+function AppAppBar() {
     const [open, setOpen] = React.useState(false);
+    const location = useLocation();
 
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
@@ -30,7 +31,7 @@ function AppAppBar( ) {
         const offset = 128;
         if (sectionElement) {
             const targetScroll = sectionElement.offsetTop - offset;
-            sectionElement.scrollIntoView({behavior: 'smooth'});
+            sectionElement.scrollIntoView({ behavior: 'smooth' });
             window.scrollTo({
                 top: targetScroll,
                 behavior: 'smooth',
@@ -82,32 +83,34 @@ function AppAppBar( ) {
                                 px: 0,
                             }}
                         >
-                            <Link to={"/"}>
-                            <img
-                                src={
-                                    'src/Logo.png'
-                                }
-                                style={logoStyle}
-                                alt="logo of JobHub"
-                            />
-                        </Link>
-                            <Box sx={{display: {xs: 'none', md: 'flex'}}}>
-                                <MenuItem
-                                    onClick={() => scrollToSection('features')}
-                                    sx={{py: '6px', px: '12px'}}
-                                >
-                                   <Typography variant="body2" color="text.primary">
-                                        Features
-                                    </Typography>
-                                </MenuItem>
-                                <MenuItem
-                                    onClick={() => scrollToSection('highlights')}
-                                    sx={{py: '6px', px: '12px'}}
-                                >
-                                    <Typography variant="body2" color="text.primary">
-                                        Highlights
-                                    </Typography>
-                                </MenuItem>
+                            <Link to="/">
+                                <img
+                                    src={'src/Logo.png'}
+                                    style={logoStyle}
+                                    alt="logo of JobHub"
+                                />
+                            </Link>
+                            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                                {location.pathname === '/' && (
+                                    <>
+                                        <MenuItem
+                                            onClick={() => scrollToSection('features')}
+                                            sx={{ py: '6px', px: '12px' }}
+                                        >
+                                            <Typography variant="body2" color="text.primary">
+                                                Features
+                                            </Typography>
+                                        </MenuItem>
+                                        <MenuItem
+                                            onClick={() => scrollToSection('highlights')}
+                                            sx={{ py: '6px', px: '12px' }}
+                                        >
+                                            <Typography variant="body2" color="text.primary">
+                                                Highlights
+                                            </Typography>
+                                        </MenuItem>
+                                    </>
+                                )}
                                 <MenuItem
                                     component={Link}
                                     to="/companies"
@@ -130,7 +133,7 @@ function AppAppBar( ) {
                         </Box>
                         <Box
                             sx={{
-                                display: {xs: 'none', md: 'flex'},
+                                display: { xs: 'none', md: 'flex' },
                                 gap: 0.5,
                                 alignItems: 'center',
                             }}
@@ -154,15 +157,15 @@ function AppAppBar( ) {
                                 Sign up
                             </Button>
                         </Box>
-                        <Box sx={{display: {sm: '', md: 'none'}}}>
+                        <Box sx={{ display: { sm: '', md: 'none' } }}>
                             <Button
                                 variant="text"
                                 color="primary"
                                 aria-label="menu"
                                 onClick={toggleDrawer(true)}
-                                sx={{minWidth: '30px', p: '4px'}}
+                                sx={{ minWidth: '30px', p: '4px' }}
                             >
-                                <MenuIcon/>
+                                <MenuIcon />
                             </Button>
                             <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
                                 <Box
@@ -180,38 +183,35 @@ function AppAppBar( ) {
                                             alignItems: 'end',
                                             flexGrow: 1,
                                         }}
-                                    >
-                                    </Box>
-                                    <MenuItem onClick={() => scrollToSection('features')}>
-                                        Features
-                                    </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('highlights')}>
-                                        Highlights
-                                    </MenuItem>
-                                    <MenuItem
-                                        component={Link}
-                                        to="/companies"
-                                    >
+                                    ></Box>
+                                    {location.pathname === '/' && (
+                                        <>
+                                            <MenuItem onClick={() => scrollToSection('features')}>
+                                                Features
+                                            </MenuItem>
+                                            <MenuItem onClick={() => scrollToSection('highlights')}>
+                                                Highlights
+                                            </MenuItem>
+                                        </>
+                                    )}
+                                    <MenuItem component={Link} to="/companies">
                                         <Typography variant="body2" color="text.primary">
                                             Companies
                                         </Typography>
                                     </MenuItem>
-                                    <MenuItem
-                                        component={Link}
-                                        to="/jobposts"
-                                    >
+                                    <MenuItem component={Link} to="/jobposts">
                                         <Typography variant="body2" color="text.primary">
                                             JobPosts
                                         </Typography>
                                     </MenuItem>
-                                    <Divider/>
+                                    <Divider />
                                     <MenuItem>
                                         <Button
                                             color="primary"
                                             variant="contained"
                                             component={Link}
                                             to="/sign-up"
-                                            sx={{width: '100%'}}
+                                            sx={{ width: '100%' }}
                                         >
                                             Sign up
                                         </Button>
@@ -222,7 +222,7 @@ function AppAppBar( ) {
                                             variant="outlined"
                                             component={Link}
                                             to="/sign-in"
-                                            sx={{width: '100%'}}
+                                            sx={{ width: '100%' }}
                                         >
                                             Sign in
                                         </Button>
@@ -236,10 +236,5 @@ function AppAppBar( ) {
         </div>
     );
 }
-
-// AppAppBar.propTypes = {
-//     mode: PropTypes.oneOf(['dark', 'light']).isRequired,
-//     toggleColorMode: PropTypes.func.isRequired,
-// };
 
 export default AppAppBar;
