@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box } from "@mui/material";
+import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box, IconButton } from "@mui/material";
+import { Edit } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import { useParams } from "react-router-dom";
 import Review from '../Review/Review';
-import { format, parseISO } from 'date-fns';
 
 const Root = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
     maxWidth: 600,
     margin: "auto",
     marginTop: theme.spacing(5),
+    position: 'relative',
 }));
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
@@ -77,6 +78,14 @@ function UserProfile() {
 
     return (
         <Root>
+            <IconButton
+                color="primary"
+                aria-label="edit user"
+                sx={{ position: 'absolute', top: 8, right: 8 }}
+            >
+                <Edit />
+            </IconButton>
+
             <Grid container alignItems="center" justifyContent="center">
                 <StyledAvatar src={user.image || "/default-user.png"} />
                 <UserName>{user.username}</UserName>

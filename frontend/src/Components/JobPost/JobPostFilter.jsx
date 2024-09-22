@@ -48,15 +48,15 @@ export default function JobPostFilter({ onFilter }) {
     return (
         <Box sx={{ width: '100%', backgroundColor: '#fff', padding: '16px' }}>
             <Grid container spacing={2} alignItems="center" justifyContent="center">
-                <Grid item xs={12} sm={2}>
-                    <TextField
-                        label="Company Name"
-                        variant="outlined"
-                        fullWidth
-                        value={companyName}
-                        onChange={(e) => setCompanyName(e.target.value)}
-                    />
-                </Grid>
+                {/*<Grid item xs={12} sm={2}>*/}
+                {/*    <TextField*/}
+                {/*        label="Company Name"*/}
+                {/*        variant="outlined"*/}
+                {/*        fullWidth*/}
+                {/*        value={companyName}*/}
+                {/*        onChange={(e) => setCompanyName(e.target.value)}*/}
+                {/*    />*/}
+                {/*</Grid>*/}
                 <Grid item xs={12} sm={2}>
                     <TextField
                         label="Title"

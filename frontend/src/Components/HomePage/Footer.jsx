@@ -10,6 +10,9 @@ import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/X';
+import Terms from "./FooterComps/Terms.jsx";
+import Privacy from "./FooterComps/Privacy.jsx";
+import Contact from "./FooterComps/Contact.jsx";
 
 const logoStyle = {
     width: '140px',
@@ -136,7 +139,7 @@ export default function Footer() {
                     <Typography variant="body2" fontWeight={600}>
                         Company
                     </Typography>
-                    <Link color="text.secondary" href="#">
+                    <Link color="text.secondary" href="/about-us">
                         About us
                     </Link>
                 </Box>
@@ -150,15 +153,9 @@ export default function Footer() {
                     <Typography variant="body2" fontWeight={600}>
                         Legal
                     </Typography>
-                    <Link color="text.secondary" href="#">
-                        Terms
-                    </Link>
-                    <Link color="text.secondary" href="#">
-                        Privacy
-                    </Link>
-                    <Link color="text.secondary" href="#">
-                        Contact
-                    </Link>
+                    <Terms />
+                    <Privacy />
+                    <Contact />
                 </Box>
             </Box>
             <Box
@@ -194,23 +191,16 @@ export default function Footer() {
                 >
                     <IconButton
                         color="inherit"
-                        href="https://github.com/"
+                        href="https://github.com/slyvion/timskiProekt"
                         aria-label="GitHub"
                         sx={{ alignSelf: 'center' }}
                     >
                         <FacebookIcon />
                     </IconButton>
+
                     <IconButton
                         color="inherit"
-                        href="https://x.com/"
-                        aria-label="X"
-                        sx={{ alignSelf: 'center' }}
-                    >
-                        <TwitterIcon />
-                    </IconButton>
-                    <IconButton
-                        color="inherit"
-                        href="https://www.linkedin.com/"
+                        href="https://www.linkedin.com/in/slave-stamenov/"
                         aria-label="LinkedIn"
                         sx={{ alignSelf: 'center' }}
                     >

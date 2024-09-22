@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box, Button } from "@mui/material";
+import { Avatar, Typography, Paper, Grid, Tabs, Tab, Box, Button, IconButton } from "@mui/material";
 import { styled } from "@mui/system";
 import StarIcon from "@mui/icons-material/Star";
+import EditIcon from "@mui/icons-material/Edit";
 import Review from '../Review/Review.jsx';
 import JobPost from '../JobPost/JobPost.jsx';
 import { useParams, useNavigate } from "react-router-dom";
@@ -11,6 +12,7 @@ const Root = styled(Paper)(({ theme }) => ({
     maxWidth: 600,
     margin: "auto",
     marginTop: theme.spacing(5),
+    position: "relative", // Add relative positioning to contain the button
 }));
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
@@ -44,9 +46,15 @@ const TabContent = styled(Box)(({ theme }) => ({
     marginTop: theme.spacing(2),
 }));
 
+const EditButton = styled(IconButton)(({ theme }) => ({
+    position: "absolute", // Position it in the top-right corner
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+}));
+
 function CompanyProfile() {
     const { id } = useParams();
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
     const [value, setValue] = useState(0);
     const [company, setCompany] = useState(null);
     const [jobPosts, setJobPosts] = useState([]);
@@ -59,7 +67,11 @@ function CompanyProfile() {
     };
 
     const handleAddReviewClick = () => {
-        navigate(`/company/${id}/add-review`); // Navigate to the add review page with company ID
+        navigate(`/company/${id}/add-review`);
+    };
+
+    const handleEditClick = () => {
+        console.log("Edit button clicked");
     };
 
     useEffect(() => {
@@ -111,6 +123,10 @@ function CompanyProfile() {
 
     return (
         <Root>
+            <EditButton onClick={handleEditClick}>
+                <EditIcon />
+            </EditButton>
+
             <Grid container alignItems="center" justifyContent="center">
                 <StyledAvatar src={company.image || "/joblogo.jpg"} />
                 <CompanyName>{company.companyName}</CompanyName>

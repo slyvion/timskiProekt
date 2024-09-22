@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Box } from "@mui/material"; // Import Box component
 import JobPostFilter from "./JobPostFilter.jsx";
 import JobPost from "./JobPost.jsx";
 import AppAppBar from "../AppAppBar.jsx";
@@ -13,7 +14,6 @@ export default function JobPostPage() {
         setError(null);
 
         try {
-
             const validParams = Object.entries(filterParams)
                 .filter(([key, value]) => value !== undefined && value !== '')
                 .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
@@ -50,11 +50,11 @@ export default function JobPostPage() {
             ) : error ? (
                 <p>Error: {error}</p>
             ) : (
-                <span>
+                <Box sx={{ paddingLeft: '600px' }}>
                     {jobPosts.map((job) => (
                         <JobPost key={job.id} job={job} />
                     ))}
-                </span>
+                </Box>
             )}
         </div>
     );
