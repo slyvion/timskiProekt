@@ -55,7 +55,7 @@ public class CompanyController {
         return "redirect:/companies";
     }
 
-    @PostMapping("/{id}/add-review")
+    @PutMapping("/{id}/add-review")
     public Review addReview(@Valid @RequestBody ReviewDto reviewDto, @PathVariable String id) {
         return reviewService.create(reviewDto);
     }

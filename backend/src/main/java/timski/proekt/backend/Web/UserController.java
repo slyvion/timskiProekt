@@ -19,9 +19,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ReviewService reviewService;
-
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.findById(id);
